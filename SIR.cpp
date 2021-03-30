@@ -16,12 +16,22 @@ using namespace std;
 
 
 
+//IMPORTANT: Parameters have to be changed manually: the line where they are:   population size: 33
+                                                                              //size: 34
+                                                                              //incubation time: 125
+                                                                              //turns to die: 129
+                                                                              //turns to become immune: 147
+                                                                              //infection chance: 396
+                                                                              //death rate:  397
+
+
+
 
 
 
 // setting up the values for the grid 
-const int N = 10000;  //population size
-const int size = 200; //Length of edge of the square where agents can move
+const int N = 1000;  //population size
+const int size = 64; //Length of edge of the square where agents can move, size^2 should be around 4x the size of N
 int R_0; //infection chance 100 = 100%
 int D_0; //death rate, 100 = every one dies who gets infected
 int Recov_0;  //1-D_0, those who survive become immune
@@ -43,7 +53,7 @@ class Person {
         int state;   //susceptible:1 infected:2 immune:3 dead:4
         bool cont;  //susceptible had contact with infected and got infected
         int  time;   //time scince getting infected, used for incubation period
-        bool first;    //will be explained at line 88
+        bool first;    //will be explained at line 98
 
     };
 
@@ -380,10 +390,10 @@ stringstream ss;
  
 ofstream f;
 
-int n = 1; //number of iterations per set D_0
+int n = 1; //number of iterations per set D_0, I recommend at least 20 for this value
 
 for(int i = 0; i < 1; i++){  //decides the range of D_0 to run
-    R_0 = 5;
+    R_0 = 5;    //have to manually set R_0
     D_0 = i * 5 + 10;  //i * a + c format, a is the D_0 change per iteration, c is the starting point
     Recov_0 = 1-D_0;
 
